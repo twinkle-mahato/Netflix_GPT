@@ -1,6 +1,11 @@
 import { useState, useRef } from "react"
 import Header from "./Header"
 import { checkValidData } from "../utils/Validate";
+import { createUserWithEmailAndPassword,signInWithEmailAndPassword, updateProfile} from "firebase/auth";
+import {auth} from "../utils/firebase";
+import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
 
@@ -10,16 +15,21 @@ const Login = () => {
   const [nameError, setNameError] = useState(null);
   const [emailError, setEmailError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
+  const [authError, setAuthError] = useState(null);
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
    
   const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
 
   const handleButtonClick = () => {
+
     // Validate the form data
 
-      //  console.log(email.current.value);
-      //  console.log(password.current.value);
+    //  console.log(email.current.value);
+    //  console.log(password.current.value);
 
     // This is a function that checks if the form fields are valid 
      const errors = checkValidData(
@@ -32,6 +42,80 @@ const Login = () => {
   setNameError(errors.nameError || null);
   setEmailError(errors.emailError || null);
   setPasswordError(errors.passwordError || null);
+
+  //  If data is invalid → show errors and STOP. If data is valid → continue and create/sign in user
+
+  // If errors object is NOT empty or greater then zero, return early and stop execution. If errors object is empty or equal to zero, continue with sign up.
+
+    if (Object.keys(errors).length > 0) return;
+
+       // logic for sign In/Up Logic (if not sign in page then it means sign up page)
+
+       if(!isSignInForm) {
+           // Sign Up logic
+      createUserWithEmailAndPassword(
+         auth, 
+         email.current.value, 
+         password.current.value
+        )
+
+        .then((userCredential) => {
+          // Signed up 
+          const user = userCredential.user;
+          setAuthError(null); // Clear error on success
+
+          updateProfile(user, {
+          displayName: name.current.value, 
+          photoURL: "https://avatars.githubusercontent.com/u/143272933?v=4"
+          })
+            .then(() => {
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+                  dispatch(
+                    addUser({ 
+                      uid:uid, 
+                      email:email, 
+                      displayName:displayName, 
+                      photoURL:photoURL
+                    })
+                  );
+            //ONLY navigate now that everything is synced
+             navigate("/browse")
+              })
+           .catch((error) => {
+          console.log(error.message);
+          });
+          console.log("Signed up:",user);
+           navigate("/browse")
+          })
+
+
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+           setAuthError(`${errorCode} - ${errorMessage}`);
+          });
+        }
+       else{
+           // Sign In logic
+        signInWithEmailAndPassword(
+           auth, 
+          email.current.value, 
+          password.current.value
+        )
+
+       .then((userCredential) => {
+         // Signed in 
+      const user = userCredential.user;
+      console.log("Signed in:",user);
+        navigate("/browse")
+          })
+
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+         setAuthError(`${errorCode} - ${errorMessage}`); 
+       });
+       }
        
     }
 
@@ -39,6 +123,7 @@ const Login = () => {
     setIsSignInForm(!isSignInForm);
 
     // clear errors when toggling form
+    setAuthError(null);
     setNameError(null);
     setEmailError(null);
     setPasswordError(null);
@@ -76,7 +161,9 @@ const Login = () => {
           />
         )}
 
-        {nameError && <p className="text-red-500 text-sm mb-2">{nameError}</p>}
+        {!authError && nameError && 
+         <p 
+        className="text-red-500 text-sm mb-2">{nameError}</p>}
 
           
 
@@ -88,7 +175,9 @@ const Login = () => {
          emailError ? "border-red-600" : "border-gray-400 focus:border-white"
          }`} />  
 
-         {emailError && <p className="text-red-600 text-sm">{emailError}</p>}    
+         {!authError && emailError && 
+         <p 
+        className="text-red-600 text-sm">{emailError}</p>}    
       
         <input 
         ref={password} 
@@ -98,15 +187,26 @@ const Login = () => {
         passwordError ? "border-red-600" : "border-gray-400 focus:border-white"
         }`} />
 
-      {passwordError && <p className="text-red-600 text-sm">{passwordError}
+      {!authError && passwordError && 
+      <p 
+      className="text-red-600 text-sm">{passwordError}
       </p>
        }
-         
 
+      {/* firebase auth error */}
+
+      {authError && (
+        <div className="bg-[#e87c03] p-3 rounded-md mt-4 text-white text-[14px] flex items-center">
+          <span>{authError}</span>
+        </div>
+      )}
+         
+    
         <button className="p-3 mt-6 bg-red-700 w-full rounded font-semibold hover:bg-red-600 cursor-pointer"
           onClick={handleButtonClick}> 
           {isSignInForm ? "Sign In" : "Sign Up"}
           </button>
+
 
          {/* Sign Up form */}
          <p 

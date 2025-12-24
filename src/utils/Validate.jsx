@@ -31,7 +31,7 @@ const isPasswordValid = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d!@#$%^&*(),.?":{}|<>]{8
     errors.passwordError = "*Password must be at least 8 characters and include letters and numbers";
   }
 
-  // Return errors object (empty if no errors)
+  // Return errors object (errors = empty here)
   return errors;
 };
 
