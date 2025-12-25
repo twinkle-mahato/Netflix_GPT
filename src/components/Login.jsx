@@ -3,9 +3,10 @@ import Header from "./Header"
 import { checkValidData } from "../utils/Validate";
 import { createUserWithEmailAndPassword,signInWithEmailAndPassword, updateProfile} from "firebase/auth";
 import {auth} from "../utils/firebase";
-import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { USER_AVATAR } from "../utils/constants";
+import { BACKGROUND_IMAGE } from "../utils/constants";
 
 const Login = () => {
 
@@ -17,7 +18,6 @@ const Login = () => {
   const [passwordError, setPasswordError] = useState(null);
   const [authError, setAuthError] = useState(null);
 
-    const navigate = useNavigate();
     const dispatch = useDispatch();
    
   const name = useRef(null);
@@ -66,7 +66,7 @@ const Login = () => {
 
           updateProfile(user, {
           displayName: name.current.value, 
-          photoURL: "https://avatars.githubusercontent.com/u/143272933?v=4"
+          photoURL:USER_AVATAR,
           })
             .then(() => {
               const { uid, email, displayName, photoURL } = auth.currentUser;
@@ -75,21 +75,17 @@ const Login = () => {
                       uid:uid, 
                       email:email, 
                       displayName:displayName, 
-                      photoURL:photoURL
+                      photoURL:photoURL,
                     })
                   );
-            //ONLY navigate now that everything is synced
-             navigate("/browse")
               })
            .catch((error) => {
-          console.log(error.message);
+             setAuthError(error.message);
           });
-          console.log("Signed up:",user);
-           navigate("/browse")
+          // console.log("Signed up:",user);
           })
 
-
-        .catch((error) => {
+         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
            setAuthError(`${errorCode} - ${errorMessage}`);
@@ -107,7 +103,6 @@ const Login = () => {
          // Signed in 
       const user = userCredential.user;
       console.log("Signed in:",user);
-        navigate("/browse")
           })
 
       .catch((error) => {
@@ -138,7 +133,7 @@ const Login = () => {
     <div>
       <Header/>
       <div className="absolute">
-         <img src='https://assets.nflxext.com/ffe/siteui/vlv3/6d631aa6-567d-46ef-a644-b5b00e4334d2/web/IN-en-20251215-TRIFECTA-perspective_f1cab02a-e42b-4913-a7d9-c5fe0f94f68d_large.jpg' alt='background-iamge'/> 
+         <img src={BACKGROUND_IMAGE} alt='background-iamge'/> 
          </div>
 
          {/* login form */}
