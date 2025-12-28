@@ -38,6 +38,7 @@
 - useTopRatedMovies custom hook
 - useHorroMovies custom hook
 - useUpComingMovies custom hook
+- GPT Search Feature
 
 # Features
 
@@ -57,5 +58,4 @@
 
 - Netflix GPT
   - Search Bar
-  - Movie Suggestions  
-
+  - Movie Suggestions
