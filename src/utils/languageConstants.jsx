@@ -12,7 +12,7 @@ const lang = {
      gptSearchPlaceholder : "¿Qué te gustaría ver hoy?"
   },
   bengali : {
-    search : "অনুসন্ধান করুন",
+    search : "অনুসন্ধান",
      gptSearchPlaceholder : "আজ তুমি কী দেখতে চাও?"
   },
   punjabi : {

@@ -1,18 +1,23 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import lang from "../utils/languageConstants";
 
 const GptSearchBar = () => {
+ 
+  const langKey = useSelector((store) => store.config.lang);
+
   return (
     <div className="pt-[10%] flex justify-center">
       <form
         className="items-center gap-4
           grid grid-cols-12
-          bg-black/75
+          bg-black
           border border-white/30
           rounded-xl
-          px-10 py-3
+          px-5 py-3
           shadow-2xl
-          backdrop-blur-md"
+          backdrop-blur-md
+          w-[45%]"
       >
         <input
           type="text"
@@ -22,14 +27,13 @@ const GptSearchBar = () => {
             placeholder-gray-300
             text-lg
             outline-none"
-          placeholder={lang.hindi.gptSearchPlaceholder}
+          placeholder={lang[langKey]?.gptSearchPlaceholder}
         />
 
         <button
           className="bg-red-600
             hover:bg-red-700
             text-white
-            font-semibold
             px-6 py-3
             rounded-lg
             transition-all
@@ -39,7 +43,7 @@ const GptSearchBar = () => {
             cursor-pointer
             "
         >
-          {lang.hindi.search}
+          {lang[langKey]?.search}
         </button>
       </form>
     </div>

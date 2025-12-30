@@ -38,7 +38,10 @@
 - useTopRatedMovies custom hook
 - useHorroMovies custom hook
 - useUpComingMovies custom hook
-- GPT Search Feature
+- GPT Search Page
+- GPT Search Bar
+- Multi-language Feature in our App
+
 
 # Features
 
