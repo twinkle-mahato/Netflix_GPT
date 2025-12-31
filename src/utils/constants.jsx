@@ -18,3 +18,6 @@ export const SUPPORTED_LANGUAGE = [
   { identifier: "spanish", name: "spanish" },
   { identifier: "punjabi", name: "punjabi" },
 ];
+
+
+export const GEMINI_KEY = import.meta.env.VITE_GEMINI_KEY;
