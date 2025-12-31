@@ -7,6 +7,7 @@ const useHorrorMovies = () => {
   //Fetch data from TMDB API and update store
   const dispatch = useDispatch();
 
+
   const getHorrorMovies = async () => {
     const data = await fetch(
       "https://api.themoviedb.org/3/discover/movie?with_genres=27&language=en-US&sort_by=popularity.desc&include_adult=false&page=1",
