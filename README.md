@@ -41,6 +41,13 @@
 - GPT Search Page
 - GPT Search Bar
 - Multi-language Feature in our App
+- Get genai API key
+- GPT search API call
+- fetched gptMovieSuggestions from TMDB
+- created gptSlice added data
+- Reused Movie List component to make movie suggestion container
+- Memoizatio
+- Make our site Responsive
 
 
 # Features

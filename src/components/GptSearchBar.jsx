@@ -5,13 +5,10 @@ import genai from "../utils/gemini";
 import { API_OPTIONS } from "../utils/constants";
 import { addGptMovieResults } from "../utils/gptSlice";
 
-
 const GptSearchBar = () => {
   const langKey = useSelector((store) => store.config.lang);
   const searchText = useRef(null);
   const dispatch = useDispatch();
-
- 
 
   // Search Movie in TMDb
   const searchMovieTMDb = async (movie) => {
@@ -69,43 +66,21 @@ const GptSearchBar = () => {
   };
 
   return (
-    <div className="pt-[10%] flex justify-center">
+    <div className="pt-[40%] md:pt-[10%] flex justify-center">
       <form
-        className="items-center gap-4
-          grid grid-cols-12
-          bg-black
-          border border-white/30
-          rounded-xl
-          px-5 py-3
-          shadow-2xl
-          backdrop-blur-md
-          w-[45%]"
+        className="w-full md:w-[45%] bg-black grid grid-cols-12 rounded-lg overflow-hidden border border-white/30"
         onSubmit={(e) => e.preventDefault()}
       >
         <input
           ref={searchText}
           type="text"
-          className="col-span-10
-            bg-transparent
-            text-white
-            placeholder-gray-300
-            text-lg
-            outline-none"
+          className="p-2 md:m-3 m-2 bg-white/10 text-white outline-line col-span-9 md:col-span-10 placeholder-white/60  border border-white rounded-lg focus:outline-none 
+         focus:border-blue-500 transition duration-200"
           placeholder={lang[langKey]?.gptSearchPlaceholder}
         />
 
         <button
-          className="bg-red-600
-            hover:bg-red-700
-            text-white
-            px-6 py-3
-            rounded-lg
-            transition-all
-            duration-200
-            active:scale-95
-            col-span-2
-            cursor-pointer
-            "
+          className=" col-span-3 md:col-span-2 m-2 md:m-3 py-2  bg-red-600 text-white rounded-lg cursor-pointer shadow-md hover:shadow-red-500/30 transition duration-200 ease-in-out active:scale-95"
           onClick={handleGptSearchClick}
         >
           {lang[langKey]?.search}

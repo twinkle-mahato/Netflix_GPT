@@ -61,16 +61,16 @@ const Header = () => {
   };
 
   return (
-    <div className=" absolute top-0 left-0 px-8 py-2 bg-linear-to-b from-black/80 to-transparent w-full z-50 flex justify-between">
-      <img className="w-44" src={NETFLIX_LOGO} alt="logo" />
+    <div className="absolute w-screen top-0 left-0 px-7 py-1 bg-linear-to-b from-black/80 to-transparent  z-50 flex flex-col justify-between md:flex-row ">
+      <img className="w-44 mx-auto md:mx-0" src={NETFLIX_LOGO} alt="logo" />
 
       {/* when i have user then load this part only */}
       {user && (
-        <div className="flex items-center">
+        <div className="flex items-center justify-between">
 
           {showGptSearch && (
           <select
-            className=" mr-4 px-4 py-2 rounded-md bg-black/20 text-white text-sm border border-white/20 backdrop-blur-sm  hover:border-white/40 focus:outline-none
+            className="hidden md:block mr-4 px-4 py-2 rounded-md bg-black/20 text-white text-sm border border-white/50 backdrop-blur-sm  hover:border-white/40 focus:outline-none
            focus:ring-2 focus:ring-blue-500/60 transition-all duration-200 cursor-pointer"
             onChange={handleLanguageChange}
           >
@@ -87,10 +87,10 @@ const Header = () => {
           )}
 
           <button
-            className="  px-5 py-2 rounded-md
+            className=" px-4 md:px-5 py-2 rounded-md
               text-white text-sm font-medium
-              bg-blue-700/70
-              border border-blue-500/60
+              bg-blue-700/50
+              border border-blue-100/60
               hover:bg-blue-600/70
               hover:border-blue-400
               focus:ring-2 focus:ring-blue-500/60
@@ -102,13 +102,13 @@ const Header = () => {
 
           <img
             alt="user-icon"
-            className="w-12 h-11 mx-4 rounded-md border border-white/20 hover:scale-105 cursor-pointer  hover:ring-white/40 transition-all duration-200"
+            className="hidden md:block w-12 h-11 mx-4 rounded-md border border-white/20 hover:scale-105 cursor-pointer  hover:ring-white/40 transition-all duration-200"
             src={user?.photoURL}
           />
 
           <button
             onClick={handleSignOut}
-            className="px-6 py-3 my-8 bg-red-600 text-white font-semibold rounded-md hover:bg-red-500 active:bg-red-700 active:scale-95 transition-all duration-200 cursor-pointer"
+            className=" px-4 md:px-6 py-2 md:py-3 my-5 md:my-8  bg-red-600 text-white font-semibold rounded-md hover:bg-red-500 active:bg-red-700 active:scale-95 transition-all duration-200 cursor-pointer"
           >
             Sign Out
           </button>

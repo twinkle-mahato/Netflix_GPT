@@ -130,86 +130,95 @@ const Login = () => {
   return (
     <div>
       <Header />
-      <div className="absolute">
-        <img src={background_image} alt="background-iamge" />
+      <div className="fixed inset-0 -z-10">
+        <img
+          className="h-screen w-full object-cover"
+          src={background_image}
+          alt="background-iamge"
+        />
       </div>
 
       {/* login form */}
-      <form
-        onSubmit={(e) => e.preventDefault()}
-        className="absolute p-12 bg-black/85 w-3/12 my-36 mx-auto left-0 right-0 text-white rounded"
-      >
-        <h1 className="font-bold text-3xl py-4">
-          {isSignInForm ? "Sign In" : "Sign Up"}
-        </h1>
 
-        {!isSignInForm && (
+      <div className="flex justify-center items-center min-h-screen px-4">
+        <form
+          onSubmit={(e) => e.preventDefault()}
+          className=" p-12 bg-black/85 w-full md:w-3/12  text-white rounded"
+        >
+          <h1 className="font-bold text-3xl py-4">
+            {isSignInForm ? "Sign In" : "Sign Up"}
+          </h1>
+
+          {!isSignInForm && (
+            <input
+              type="text"
+              placeholder="Full Name"
+              ref={name}
+              className={`p-4 my-2 rounded w-full bg-black/70 border transition-colors duration-200 focus:outline-none ${
+                nameError
+                  ? "border-red-600"
+                  : "border-gray-400 focus:border-white"
+              }`}
+            />
+          )}
+
+          {!authError && nameError && (
+            <p className="text-red-500 text-sm mb-2">{nameError}</p>
+          )}
+
           <input
+            ref={email}
             type="text"
-            placeholder="Full Name"
-            ref={name}
+            placeholder="Email Address"
             className={`p-4 my-2 rounded w-full bg-black/70 border transition-colors duration-200 focus:outline-none ${
-              nameError
+              emailError
                 ? "border-red-600"
                 : "border-gray-400 focus:border-white"
             }`}
           />
-        )}
 
-        {!authError && nameError && (
-          <p className="text-red-500 text-sm mb-2">{nameError}</p>
-        )}
+          {!authError && emailError && (
+            <p className="text-red-600 text-sm">{emailError}</p>
+          )}
 
-        <input
-          ref={email}
-          type="text"
-          placeholder="Email Address"
-          className={`p-4 my-2 rounded w-full bg-black/70 border transition-colors duration-200 focus:outline-none ${
-            emailError ? "border-red-600" : "border-gray-400 focus:border-white"
-          }`}
-        />
+          <input
+            ref={password}
+            type="password"
+            placeholder="Password"
+            className={`p-4 my-2 rounded w-full bg-black/70 border transition-colors duration-200 focus:outline-none ${
+              passwordError
+                ? "border-red-600"
+                : "border-gray-400 focus:border-white"
+            }`}
+          />
 
-        {!authError && emailError && (
-          <p className="text-red-600 text-sm">{emailError}</p>
-        )}
+          {!authError && passwordError && (
+            <p className="text-red-600 text-sm">{passwordError}</p>
+          )}
 
-        <input
-          ref={password}
-          type="password"
-          placeholder="Password"
-          className={`p-4 my-2 rounded w-full bg-black/70 border transition-colors duration-200 focus:outline-none ${
-            passwordError
-              ? "border-red-600"
-              : "border-gray-400 focus:border-white"
-          }`}
-        />
+          {/* firebase auth error */}
 
-        {!authError && passwordError && (
-          <p className="text-red-600 text-sm">{passwordError}</p>
-        )}
+          {authError && (
+            <div className="bg-[#e87c03] p-3 rounded-md mt-4 text-white text-[14px] flex items-center">
+              <span>{authError}</span>
+            </div>
+          )}
 
-        {/* firebase auth error */}
+          <button
+            className="p-3 mt-6 bg-red-700 w-full rounded font-semibold hover:bg-red-600 cursor-pointer"
+            onClick={handleButtonClick}
+          >
+            {isSignInForm ? "Sign In" : "Sign Up"}
+          </button>
 
-        {authError && (
-          <div className="bg-[#e87c03] p-3 rounded-md mt-4 text-white text-[14px] flex items-center">
-            <span>{authError}</span>
-          </div>
-        )}
-
-        <button
-          className="p-3 mt-6 bg-red-700 w-full rounded font-semibold hover:bg-red-600 cursor-pointer"
-          onClick={handleButtonClick}
-        >
-          {isSignInForm ? "Sign In" : "Sign Up"}
-        </button>
-
-        {/* Sign Up form */}
-        <p className="mt-6 text-lg cursor-pointer" onClick={toggleSignInForm}>
-          {isSignInForm
-            ? "New to Netflix? Sign up now"
-            : "Already registered? Sign In now"}
-        </p>
-      </form>
+          {/* Sign Up form */}
+          <p className="mt-6 text-lg cursor-pointer" onClick={toggleSignInForm}>
+            {isSignInForm
+              ? "New to Netflix? Sign up now"
+              : "Already registered? Sign In now"}
+          </p>
+        </form>
+      </div>
     </div>
   );
 };

@@ -15,9 +15,11 @@ const GptSearch = () => {
   
   return (
     <div>
-         <div className="fixed -z-10">
+         <div className="fixed inset-0 -z-10">
              <img src={background_image} 
-             alt="background-iamge" />
+             alt="background-iamge"
+             className="h-full w-full object-cover" 
+             />
          </div>
         <GptSearchBar />
         <GptMovieSuggestion />
