@@ -61,16 +61,18 @@ const Header = () => {
   };
 
   return (
-    <div className="absolute w-screen top-0 left-0 px-7 py-1 bg-linear-to-b from-black/80 to-transparent  z-50 flex flex-col justify-between md:flex-row ">
-      <img className="w-44 mx-auto md:mx-0" src={NETFLIX_LOGO} alt="logo" />
+    <div className="absolute top-0 left-0 right-0 z-50">
+     <div className="flex flex-row items-center justify-between px-2 md:px-10 py-1 bg-linear-to-b from-black/90 to-transparent">
+
+      <img className="w-28  md:w-44 md:mx-0" src={NETFLIX_LOGO} alt="logo" />
 
       {/* when i have user then load this part only */}
       {user && (
-        <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2 md:gap-0">
 
           {showGptSearch && (
           <select
-            className="hidden md:block mr-4 px-4 py-2 rounded-md bg-black/20 text-white text-sm border border-white/50 backdrop-blur-sm  hover:border-white/40 focus:outline-none
+            className="hidden md:block mr-4 px-5 py-2 rounded-md bg-black/20 text-white text-sm border border-white/50 backdrop-blur-sm  hover:border-white/40 focus:outline-none
            focus:ring-2 focus:ring-blue-500/60 transition-all duration-200 cursor-pointer"
             onChange={handleLanguageChange}
           >
@@ -87,7 +89,7 @@ const Header = () => {
           )}
 
           <button
-            className=" px-4 md:px-5 py-2 rounded-md
+            className=" px-1 md:px-4 md:py-2 py-1 rounded-md
               text-white text-sm font-medium
               bg-blue-700/50
               border border-blue-100/60
@@ -108,13 +110,14 @@ const Header = () => {
 
           <button
             onClick={handleSignOut}
-            className=" px-4 md:px-6 py-2 md:py-3 my-5 md:my-8  bg-red-600 text-white font-semibold rounded-md hover:bg-red-500 active:bg-red-700 active:scale-95 transition-all duration-200 cursor-pointer"
+            className=" px-2 md:px-4 py-1 md:py-2 my-5 md:my-4 bg-red-600 text-white rounded-md hover:bg-red-500 active:bg-red-700 active:scale-95 transition-all duration-200 cursor-pointer  font-medium"
           >
             Sign Out
           </button>
         </div>
       )}
     </div>
+  </div>
   );
 };
 

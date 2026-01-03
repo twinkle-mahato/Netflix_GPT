@@ -11,7 +11,7 @@ const VideoBackground = ({ movieId }) => {
     <div className="inset-0 -z-10 overflow-hidden">
       
       <iframe
-        className="w-screen aspect-video max-h-screen object-cover scale-[1.45] md:[1.25] pointer-events-none"
+        className="w-screen aspect-video max-h-screen object-cover scale-[1.56] md:scale-135 pointer-events-none"
         src={
           "https://www.youtube.com/embed/" +
           trailerVideo?.key +
@@ -21,10 +21,9 @@ const VideoBackground = ({ movieId }) => {
           "&modestbranding=1&iv_load_policy=3"
         }
         title="YouTube video player"
-        frameBorder="0"
         allow="autoplay; encrypted-media"
-      
-      ></iframe>
+        allowFullScreen
+      />
     </div>
   );
 };
