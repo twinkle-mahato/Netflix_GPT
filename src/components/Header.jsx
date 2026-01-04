@@ -64,7 +64,7 @@ const Header = () => {
     <div className="absolute top-0 left-0 right-0 z-50">
      <div className="flex flex-row items-center justify-between px-2 md:px-10 py-1 bg-linear-to-b from-black/90 to-transparent">
 
-      <img className="w-28  md:w-44 md:mx-0" src={NETFLIX_LOGO} alt="logo" />
+      <img className="w-30 md:w-44 md:mx-0" src={NETFLIX_LOGO} alt="logo" />
 
       {/* when i have user then load this part only */}
       {user && (
