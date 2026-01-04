@@ -128,9 +128,9 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="relative h-screen w-full overflow-hidden">
       <Header />
-      <div className="fixed inset-0 -z-10">
+      <div className="absolute inset-0 -z-10">
         <img
           className="h-screen w-full object-cover"
           src={background_image}
@@ -140,7 +140,7 @@ const Login = () => {
 
       {/* login form */}
 
-      <div className="flex justify-center items-center min-h-screen pt-24">
+      <div className="flex justify-center items-center min-h-screen md:pt-24">
         <form
           onSubmit={(e) => e.preventDefault()}
           className="p-6 sm:p-9 md:p-12 bg-black/80 w-full sm:w-8/12 md:w-6/12 lg:w-4/12 xl:w-3/12 text-white shadow-2xl"
