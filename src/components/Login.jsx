@@ -128,9 +128,9 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="relative h-screen w-full overflow-hidden">
       <Header />
-      <div className="fixed inset-0 -z-10">
+      <div className="absolute inset-0 -z-10">
         <img
           className="h-screen w-full object-cover"
           src={background_image}
@@ -140,21 +140,22 @@ const Login = () => {
 
       {/* login form */}
 
-      <div className="flex justify-center items-center min-h-screen px-4">
+      <div className="flex justify-center items-center min-h-screen md:pt-24">
         <form
           onSubmit={(e) => e.preventDefault()}
-          className=" p-12 bg-black/85 w-full md:w-3/12  text-white rounded"
+          className="p-6 sm:p-9 md:p-12 bg-black/80 w-full sm:w-8/12 md:w-6/12 lg:w-4/12 xl:w-3/12 text-white shadow-2xl"
         >
           <h1 className="font-bold text-3xl py-4">
             {isSignInForm ? "Sign In" : "Sign Up"}
           </h1>
+  
 
           {!isSignInForm && (
             <input
               type="text"
               placeholder="Full Name"
               ref={name}
-              className={`p-4 my-2 rounded w-full bg-black/70 border transition-colors duration-200 focus:outline-none ${
+              className={`p-4 my-2 rounded w-full   bg-gray-700 border transition-colors duration-200 focus:outline-none ${
                 nameError
                   ? "border-red-600"
                   : "border-gray-400 focus:border-white"
@@ -170,7 +171,7 @@ const Login = () => {
             ref={email}
             type="text"
             placeholder="Email Address"
-            className={`p-4 my-2 rounded w-full bg-black/70 border transition-colors duration-200 focus:outline-none ${
+            className={`p-4 my-2 rounded w-full  bg-gray-700 border transition-colors duration-200 focus:outline-none ${
               emailError
                 ? "border-red-600"
                 : "border-gray-400 focus:border-white"
@@ -185,7 +186,7 @@ const Login = () => {
             ref={password}
             type="password"
             placeholder="Password"
-            className={`p-4 my-2 rounded w-full bg-black/70 border transition-colors duration-200 focus:outline-none ${
+            className={`p-4 my-2 rounded w-full  bg-gray-700 border transition-colors duration-200 focus:outline-none ${
               passwordError
                 ? "border-red-600"
                 : "border-gray-400 focus:border-white"

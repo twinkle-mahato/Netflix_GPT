@@ -62,9 +62,9 @@ const Header = () => {
 
   return (
     <div className="absolute top-0 left-0 right-0 z-50">
-     <div className="flex flex-row items-center justify-between px-2 md:px-10 py-1 bg-linear-to-b from-black/90 to-transparent">
+     <div className="flex flex-row items-center justify-between px-2 py-3 bg-linear-to-b from-black/90 to-transparent">
 
-      <img className="w-28  md:w-44 md:mx-0" src={NETFLIX_LOGO} alt="logo" />
+      <img className="w-30 sm:w-45 md:mx-0" src={NETFLIX_LOGO} alt="logo" />
 
       {/* when i have user then load this part only */}
       {user && (
@@ -72,7 +72,7 @@ const Header = () => {
 
           {showGptSearch && (
           <select
-            className="hidden md:block mr-4 px-5 py-2 rounded-md bg-black/20 text-white text-sm border border-white/50 backdrop-blur-sm  hover:border-white/40 focus:outline-none
+            className="hidden md:block mr-4 px-5 py-2 rounded-md bg-black/60 text-white text-sm border border-white/50 backdrop-blur-sm  hover:border-white/40 focus:outline-none
            focus:ring-2 focus:ring-blue-500/60 transition-all duration-200 cursor-pointer"
             onChange={handleLanguageChange}
           >
@@ -89,7 +89,7 @@ const Header = () => {
           )}
 
           <button
-            className=" px-1 md:px-4 md:py-2 py-1 rounded-md
+            className=" px-1 sm:px-2 md:px-4 sm:py-2 py-1 rounded-md
               text-white text-sm font-medium
               bg-blue-700/50
               border border-blue-100/60
@@ -110,7 +110,7 @@ const Header = () => {
 
           <button
             onClick={handleSignOut}
-            className=" px-2 md:px-4 py-1 md:py-2 my-5 md:my-4 bg-red-600 text-white rounded-md hover:bg-red-500 active:bg-red-700 active:scale-95 transition-all duration-200 cursor-pointer  font-medium"
+            className=" px-2 sm:px-2 md:px-4 py-1  sm:py-2 my-5 md:my-4 bg-red-600 text-white rounded-md hover:bg-red-500 active:bg-red-700 active:scale-95 transition-all duration-200 cursor-pointer  font-medium"
           >
             Sign Out
           </button>
