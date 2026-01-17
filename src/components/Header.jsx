@@ -62,7 +62,7 @@ const Header = () => {
 
   return (
     <div className="absolute top-0 left-0 right-0 z-50">
-     <div className="flex flex-row items-center justify-between px-2 py-3 bg-linear-to-b from-black/90 to-transparent">
+     <div className="flex flex-row items-center justify-between px-1 py-2 bg-linear-to-b from-black/90 to-transparent">
 
       <img className="w-30 sm:w-45 md:mx-0" src={NETFLIX_LOGO} alt="logo" />
 

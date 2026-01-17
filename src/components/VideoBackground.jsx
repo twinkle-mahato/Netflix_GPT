@@ -9,7 +9,6 @@ const VideoBackground = ({ movieId }) => {
 
   return (
     <div className="inset-0 -z-10 overflow-hidden">
-      
       <iframe
         className="w-screen aspect-video max-h-screen object-cover scale-[1.56] md:scale-135 pointer-events-none"
         src={
